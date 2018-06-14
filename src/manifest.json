@@ -6,7 +6,18 @@
   "browser_action": {
     "default_popup": "index.html"
   },
-  "permissions": [],
+  "background": {
+    "scripts": ["/ext/background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "js": [ "/ext/contentscript.js"],
+      "matches": [ "http://*/*", "https://*/*"]
+    }
+  ],
+  "permissions": ["activeTab"],
   "content_security_policy":
     "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "web_accessible_resources": ["assets/css/*", "assets/js/*", "assets/fonts/*"]
